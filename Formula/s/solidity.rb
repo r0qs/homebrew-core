@@ -22,13 +22,16 @@ class Solidity < Formula
 
   depends_on "cmake" => :build
   depends_on xcode: ["11.0", :build]
+  depends_on "fmt" => :build
+  depends_on "nlohmann-json" => :build
+  depends_on "range-v3" => :build
   depends_on "boost"
 
   fails_with gcc: "5"
 
   def install
     mkdir "build" do
-      system "cmake", "..", *std_cmake_args
+      system "cmake", "..", *std_cmake_args, "-DUSE_SYSTEM_LIBRARIES=ON"
       system "make", "install"
     end
   end
