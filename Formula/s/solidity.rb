@@ -28,7 +28,7 @@ class Solidity < Formula
 
   def install
     mkdir "build" do
-      system "cmake", "..", *std_cmake_args
+      system "cmake", "..", *std_cmake_args, "-DHOMEBREW_ALLOW_FETCHCONTENT=ON"
       system "make", "install"
     end
   end
